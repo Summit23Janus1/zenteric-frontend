@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: zenteric-zenteric-poi-map-app-dev
+  annotations:
+    argocd/app-name: zenteric-zenteric-poi-map-app-dev
+    backstage.io/kubernetes-id: zenteric-zenteric-poi-map-app-dev
+    backstage.io/kubernetes-namespace: zenteric
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=zenteric-zenteric-poi-map-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: Summit23Janus1/zenteric-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.summit23rock.n26o.p1.openshiftapps.com/dev-pipelines/ns/zenteric/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.summit23rock.n26o.p1.openshiftapps.com/k8s/ns/zenteric/deployments/zenteric-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.summit23rock.n26o.p1.openshiftapps.com/#https://github.com/Summit23Janus1/zenteric-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://zenteric-poi-map-app-zenteric.apps.summit23rock.n26o.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/zenteric"
+  system: workshop-system-zenteric
+  consumesApis:
+    - gateway-api-zenteric
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-zenteric
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/zenteric"
